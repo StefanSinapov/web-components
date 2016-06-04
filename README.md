@@ -6,8 +6,9 @@ Web Components project for FMI WWW Course
 * [ ] Change images (icons)
 * [ ] Add needed bower components from Polymer Library
 * [ ] Deploy test version to:
-    * [ ] github pages
+    * [X] github pages
     * [ ] firebase
+* [ ] Change layout of the application. Samples can be found here: [https://github.com/PolymerElements/app-layout-templates]()
 * [ ] Add about_me page and deploy again
 * [ ] Add presentation using cleaver [Example](https://github.com/mikaturunen/polymer-meetup-tampere-presentation)
 
