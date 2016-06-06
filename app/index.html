@@ -9,7 +9,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<html lang="en">
+<html lang="bg">
 
 <head>
   <meta charset="utf-8">
@@ -77,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Content -->
         <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="home" href="{{baseUrl}}">
+          <!--<a data-route="home" href="{{baseUrl}}">
             <iron-icon icon="home"></iron-icon>
             <span>Home</span>
           </a>
@@ -91,6 +91,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="mail"></iron-icon>
             <span>Contact</span>
           </a>
+          -->
+          <a data-route="introduction" href="{{baseUrl}}introduction">
+            <iron-icon src="images/icons/web-components_48x48.png"></iron-icon>
+            <span>Въведение</span>
+          </a>
+          
+          <a data-route="templates" href="{{baseUrl}}templates">
+            <iron-icon src="images/icons/templates_48x48.png"></iron-icon>
+            <span>Templates</span>
+          </a>
+          
+          <a data-route="custom-elements" href="{{baseUrl}}custom-elements">
+            <iron-icon src="images/icons/custom-elements_48x48.png"></iron-icon>
+            <span>Custom Elements</span>
+          </a>
+          
+          <a data-route="shadow-dom" href="{{baseUrl}}shadow-dom">
+            <iron-icon src="images/icons/shadow-dom_48x48.png"></iron-icon>
+            <span>Shadow Dom</span>
+          </a>
+          
+          <a data-route="html-imports" href="{{baseUrl}}html-imports">
+            <iron-icon src="images/icons/html-imports_48x48.png"></iron-icon>
+            <span>HTML Imports</span>
+          </a>
+          
+          <a data-route="browser-support" href="{{baseUrl}}browser-support">
+            <iron-icon icon="build"></iron-icon>
+            <span>Browser Support</span>
+          </a>
+          
+          <a data-route="resources" href="{{baseUrl}}resources">
+            <iron-icon icon="language"></iron-icon>
+            <span>Resources</span>
+          </a>
+          
+          <a data-route="about-me" href="{{baseUrl}}about-me">
+            <iron-icon icon="account-circle"></iron-icon>
+            <span>About me</span>
+          </a>
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -103,8 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <span class="space"></span>
 
           <!-- Toolbar icons -->
-          <paper-icon-button icon="git"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
+          <!--<paper-icon-button icon="search"></paper-icon-button>-->
 
           <!-- Application name -->
           <div class="middle middle-container">
@@ -154,30 +193,149 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section data-route="users" tabindex="-1">
-              <paper-material elevation="1">
-                <h1 class="page-title" tabindex="-1">Users</h1>
-                <p>This is the users section</p>
-                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
-                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
-                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
-                <a href$="{{baseUrl}}users/Sam">Sam</a>
-              </paper-material>
-            </section>
-
-            <section data-route="user-info" tabindex="-1">
-              <paper-material elevation="-1">
-                <h1 class="page-title" tabindex="-1">User: {{params.name}}</h1>
-                <div>This is {{params.name}}'s section</div>
-              </paper-material>
-            </section>
-
             <section data-route="contact" tabindex="-1">
               <paper-material elevation="1">
                 <h1 class="page-title" tabindex="-1">Contact</h1>
                 <p>This is the contact section</p>
               </paper-material>
             </section>
+            
+            <section data-route="introduction" tabindex="-1">
+              <paper-material elavation="1">
+                <h1>Въведение</h1>
+                <p>
+                  Нови технологии излизат всеки ден, повечето от тях с обещание, 
+                  че чрез тях много по-лесно и по-бързо ще могат да се създадат комплексни уеб приложение, 
+                  какво тогава прави уеб компонентите толкова специални. 
+                  Ако погледнем към инвестициите които правят големи компании, 
+                  като Google например с Polymer, или Mozilla с техният X-Tag, 
+                  ще можем да видим, че уеб компонентите неотменно ще бъдат част от бъдещето на уеб технологиите. 
+                 </p>
+                 
+                 <h2>Какво са уеб компонентите?</h2>
+                 <p>
+                   "Уеб компоненти" е термин който обобщава набор от технологии с помощта на които програмистите могат да създават компоненти които лесно и бързо да бъдат преизползвани.
+                 </p>
+                 <p>Технологиите които седят зад уеб компонентите са: html templates, custom elements, shadow DOM и HTML imports.</p>
+                 <p>Съществуващите уеб компоненти са част от браузъра и могат да се използват без писане на код, а само чрез добавяне на import в HTML страницата.</p>
+                 <p>В момента уеб компонентите са в ранна фаза на документиране от W3C стандартът, но се поддържа в браузъри като Google Chrome, Opera и Mozilla Firefox.
+А чрез polyfills дори и в по-стари браузъри.</p>
+                <p>Всичко звучи много добре, но с какво на практика се различава от досегашният начин за преизползване на библиотеки.</p>
+                <p>Добър пример за това е jQuery UI. Ето например как можем да добавим модален прозорец в приложението си използвайки jQuery UI:</p>
+                
+                <marked-element>
+                  <div class="markdown-html"></div>
+                  <script type="text/markdown">
+                    ```html
+                    <!-- based on http://jqueryui.com/dialog/ -->
+                    <head>
+                      <link	rel='stylesheet' href='//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css' />
+                    </head>
+                      <script src="//code.jquery.com/jquery-1.10.2.js">
+                      <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js">
+                      <script>
+                        $(function () {
+                          $( "#dialog" ).dialog();
+                        }); </scritp>
+                    <body>
+                        <div id="dialog" title="After Ford">
+                          Ending is better than mending. <br />
+                          The more stitches, the less riches.
+                        </div>
+                    </body>
+                    ```
+                  </script>
+                </marked-element>
+                
+                <p>Изглежда просто нали, 3 script тага с импорти и още един за инициализирането на самият елемент като модален прозорец.</p>
+                <p>Нека видим сега как би изглеждало това чрез уеб компоненти:</p>
+                 <marked-element>
+                  <div class="markdown-html"></div>
+                  <script type="text/markdown">
+                    ```html
+                    <head>
+                      <link rel="import" href="/imports/dialog/index.html">
+                    </head>
+                    <body>
+                      <dialog-component title="After Ford">
+                        Ending is better than mending. <br />
+                        The more stitches, the less riches.
+                      </dialog-component>
+                    </body>
+                    ```
+                  </script>
+                </marked-element>
+              <p>	Това значително подобри четливостта на кода нали?
+                  Но не това е най-важното в случая, а в знанията които са необходими за да се използват двата компонента. В първия случай трябва да знаем API-то на jQueryUI, а при втория уеб компонентите използват подход подобен на този на DOM API-то с който повечето програмисти са запознати. 
+              </p>
+              <p>Разликите не изглеждат толкова големи, но когато започнем да работим с повече UI библиотеки, като например jQuery UI, Bootstrap, Closure Libraries и т.н., всички използват различни терминологии и подходи и ще трябва да научите първо тях преди реално да започнете да ги използвате. </p>
+              </paper-material>
+              <paper-material>
+                 <h3>Има и други преимущества от използването на уеб компоненти: </h3>
+                 <ol>
+                   <li>
+                     <p>
+                       Kато например <strong>изолираният обхват (scope) на css стиловете</strong>. При обикновените UI библиотеки е възможно самата библиотека вътрешно да добавя css class или Id което и ние да използваме в проекта си, при което може да се получи изтичане (leak) на стилове. 
+При уеб компонентите няма такава опасност, защото CSS стиловете имат обхват елементът. Това означава, че стиловете които идват с компонента няма как да имат някакъв страничен ефект върху бащините елементи. Същото е и в обратна посока, предотвратява parent документа случайно да стилизира уеб компонента.
+                    </p>
+                  </li>
+                   <li>
+                     <p>
+                       <strong>Преизползваемост</strong>. Поради това, че уеб компонентите са с изолиран обхват и отделени от останалата част на уеб страницата, те могат да бъдат преизползвани на други места в приложението. Или дори да бъдат споделени като open source елементи, където всеки би могъл да ги използва. 
+                    </p>
+                   </li>
+                   <li>
+                     <p>
+                       <strong>Изолираност</strong>. Тъй като уеб компонентите са с изолиран обхват (scope), разработването на UI компонентите може да бъде отделно от основната функционалност на приложението. Програмистите може самостоятелно да работят върху UI компонента, без да се налага да са наясно с логиката в останалата част на приложението. Поддръжката на тези компонента също е по-лесна поради изолираността им. 
+                   </p>
+                   </li>
+                  </ol>
+              </paper-material>
+              
+            </section>
+            
+            <section data-route="templates" tabindex="-1">
+              <paper-material elavation="1">
+                <p>Templates</p>
+              </paper-material>
+            </section>
+            
+            <section data-route="custom-elements" tabindex="-1">
+              <paper-material elavation="1">
+                <p>Custom Elements</p>
+              </paper-material>
+            </section>
+            
+            <section data-route="shadow-dom" tabindex="-1">
+              <paper-material elavation="1">
+                <p>Shadow DOM</p>
+              </paper-material>
+            </section>
+            
+            <section data-route="html-imports" tabindex="-1">
+              <paper-material elavation="1">
+                <p>HTML Imports</p>
+              </paper-material>
+            </section>
+            
+            <section data-route="browser-support" tabindex="-1">
+              <paper-material elavation="1">
+                <p>Browser support and Polyfills</p>
+              </paper-material>
+            </section>
+            
+            <section data-route="resources" tabindex="-1">
+              <paper-material elavation="1">
+                <p>Resources</p>
+              </paper-material>
+            </section>
+            
+            <section data-route="about-me" tabindex="-1">
+              <paper-material elavation="1">
+                <p>About me</p>
+              </paper-material>
+            </section>
+            
           </iron-pages>
         </div>
       </paper-scroll-header-panel>
