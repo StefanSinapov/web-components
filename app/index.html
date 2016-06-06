@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="">
+  <meta name="description" content="Реферат на тема Уеб компоненти. web components, shadow dom, custom elements, templates, template element, html import">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Web Components">
   <title>Web Components</title>
@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Toolbar -->
         <paper-toolbar id="drawerToolbar">
-          <span class="menu-name">Menu</span>
+          <span class="menu-name">Web Components</span>
         </paper-toolbar>
 
         <!-- Drawer Content -->
@@ -147,12 +147,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <!-- Application name -->
           <div class="middle middle-container">
-            <div class="app-name">Web Components</div>
+            <div class="app-name">{{title}}</div>
           </div>
 
           <!-- Application sub title -->
           <div class="bottom bottom-container">
-            <div class="bottom-title">The future of the web today</div>
+            <div class="bottom-title">{{subTitle}}</div>
           </div>
         </paper-toolbar>
 
@@ -202,27 +202,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             <section data-route="introduction" tabindex="-1">
               <paper-material elavation="1">
-                <h1>Въведение</h1>
+                <h1 class="page-title" tabindex="-1">Въведение</h1>
                 <p>
                   Нови технологии излизат всеки ден, повечето от тях с обещание, 
                   че чрез тях много по-лесно и по-бързо ще могат да се създадат комплексни уеб приложение, 
-                  какво тогава прави уеб компонентите толкова специални. 
+                  какво тогава прави уеб компонентите толкова специални?
                   Ако погледнем към инвестициите които правят големи компании, 
                   като Google например с Polymer, или Mozilla с техният X-Tag, 
                   ще можем да видим, че уеб компонентите неотменно ще бъдат част от бъдещето на уеб технологиите. 
                  </p>
                  
-                 <h2>Какво са уеб компонентите?</h2>
+                 <h2 class="subhead">Какво са уеб компонентите?</h2>
                  <p>
-                   "Уеб компоненти" е термин който обобщава набор от технологии с помощта на които програмистите могат да създават компоненти които лесно и бързо да бъдат преизползвани.
+                   "Уеб компоненти" е термин който обобщава набор от технологии с помощта на които програмистите могат да създават 
+                   компоненти които лесно и бързо да бъдат преизползвани.
                  </p>
                  <p>Технологиите които седят зад уеб компонентите са: html templates, custom elements, shadow DOM и HTML imports.</p>
                  <p>Съществуващите уеб компоненти са част от браузъра и могат да се използват без писане на код, а само чрез добавяне на import в HTML страницата.</p>
-                 <p>В момента уеб компонентите са в ранна фаза на документиране от W3C стандартът, но се поддържа в браузъри като Google Chrome, Opera и Mozilla Firefox.
-А чрез polyfills дори и в по-стари браузъри.</p>
+                 <p>
+                   В момента уеб компонентите са в ранна фаза на документиране от W3C стандартът, но се поддържа в браузъри като Google Chrome, Opera и Mozilla Firefox.
+                    А чрез polyfills дори и в по-стари браузъри.
+                  </p>
                 <p>Всичко звучи много добре, но с какво на практика се различава от досегашният начин за преизползване на библиотеки.</p>
                 <p>Добър пример за това е jQuery UI. Ето например как можем да добавим модален прозорец в приложението си използвайки jQuery UI:</p>
-                
+                <prism-highlighter></prism-highlighter>
                 <marked-element>
                   <div class="markdown-html"></div>
                   <script type="text/markdown">
@@ -231,12 +234,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <head>
                       <link	rel='stylesheet' href='//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css' />
                     </head>
-                      <script src="//code.jquery.com/jquery-1.10.2.js">
-                      <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js">
+                      <script src="//code.jquery.com/jquery-1.10.2.js"></script1>
+                      <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script2>
                       <script>
                         $(function () {
                           $( "#dialog" ).dialog();
-                        }); </scritp>
+                        }); 
+                      </script3>
                     <body>
                         <div id="dialog" title="After Ford">
                           Ending is better than mending. <br />
@@ -244,31 +248,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </div>
                     </body>
                     ```
-                  </script>
-                </marked-element>
+                    </script>
+                  </marked-element>
                 
-                <p>Изглежда просто нали, 3 script тага с импорти и още един за инициализирането на самият елемент като модален прозорец.</p>
-                <p>Нека видим сега как би изглеждало това чрез уеб компоненти:</p>
-                 <marked-element>
-                  <div class="markdown-html"></div>
-                  <script type="text/markdown">
-                    ```html
-                    <head>
-                      <link rel="import" href="/imports/dialog/index.html">
-                    </head>
-                    <body>
-                      <dialog-component title="After Ford">
-                        Ending is better than mending. <br />
-                        The more stitches, the less riches.
-                      </dialog-component>
-                    </body>
-                    ```
-                  </script>
-                </marked-element>
-              <p>	Това значително подобри четливостта на кода нали?
-                  Но не това е най-важното в случая, а в знанията които са необходими за да се използват двата компонента. В първия случай трябва да знаем API-то на jQueryUI, а при втория уеб компонентите използват подход подобен на този на DOM API-то с който повечето програмисти са запознати. 
-              </p>
-              <p>Разликите не изглеждат толкова големи, но когато започнем да работим с повече UI библиотеки, като например jQuery UI, Bootstrap, Closure Libraries и т.н., всички използват различни терминологии и подходи и ще трябва да научите първо тях преди реално да започнете да ги използвате. </p>
+                  <p>Изглежда просто нали, 3 script тага с импорти и още един за инициализирането на самият елемент като модален прозорец.</p>
+                  <p>Нека видим сега как би изглеждало това чрез уеб компоненти:</p>
+                  <marked-element>
+                    <div class="markdown-html"></div>
+                    <script type="text/markdown">
+                      ```html
+                      <head>
+                        <link rel="import" href="/imports/dialog/index.html">
+                      </head>
+                      <body>
+                        <dialog-component title="After Ford">
+                          Ending is better than mending. <br />
+                          The more stitches, the less riches.
+                        </dialog-component>
+                      </body>
+                      ```
+                    </script>
+                  </marked-element>
+                  <p>	Това значително подобри четливостта на кода нали?
+                    Но не това е най-важното в случая, а в знанията които са необходими за да се използват двата компонента. 
+                    В първия случай трябва да знаем API-то на jQueryUI, а при втория уеб компонентите 
+                    използват подход подобен на този на DOM API-то с който повечето програмисти са запознати. 
+                  </p>
+                  <p>
+                  Разликите не изглеждат толкова големи, но когато започнем да работим с повече UI библиотеки, 
+                  като например jQuery UI, Bootstrap, Closure Libraries и т.н., всички използват различни 
+                  терминологии и подходи и ще трябва да научите първо тях преди реално да започнете да ги използвате.
+                  </p>
               </paper-material>
               <paper-material>
                  <h3>Има и други преимущества от използването на уеб компоненти: </h3>
@@ -276,7 +286,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    <li>
                      <p>
                        Kато например <strong>изолираният обхват (scope) на css стиловете</strong>. При обикновените UI библиотеки е възможно самата библиотека вътрешно да добавя css class или Id което и ние да използваме в проекта си, при което може да се получи изтичане (leak) на стилове. 
-При уеб компонентите няма такава опасност, защото CSS стиловете имат обхват елементът. Това означава, че стиловете които идват с компонента няма как да имат някакъв страничен ефект върху бащините елементи. Същото е и в обратна посока, предотвратява parent документа случайно да стилизира уеб компонента.
+              При уеб компонентите няма такава опасност, защото CSS стиловете имат обхват елементът. Това означава, че стиловете които идват с компонента няма как да имат някакъв страничен ефект върху бащините елементи. Същото е и в обратна посока, предотвратява parent документа случайно да стилизира уеб компонента.
                     </p>
                   </li>
                    <li>
@@ -296,43 +306,112 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             
             <section data-route="templates" tabindex="-1">
               <paper-material elavation="1">
-                <p>Templates</p>
+                <h1 class="page-title" tabindex="-1">Templates</h1>
+                <p>
+                  Идеята за темплейти(шаблони) не е нещо ново.
+                  <br/>
+                  Използва се от много време както на сървъра (server side) така и при клиента (client side).
+                </p>
+               <p>
+                  Започвайки от сървъра темплейтите са широко разпространени за присвояване на променливи, условни операции и повтаряне на съдържание в HTML.
+               </p>
+               <p>
+                  Клиентски същото е постигнато от множество библиотеки чрез JavaScript: Handlebars.js, Underscore.js, AngularJS, Mustache и т.н. 
+                  <br> Всички те работят добре, но техниките които използват си имат своите недостатъци.
+                </p>
+                <p>
+                  В този пример шаблонът е div елемент скрит с помощта на стилове.
+                </p>
+                 <prism-highlighter></prism-highlighter>
+                <marked-element>
+                  <div class="markdown-html"></div>
+                  <script type="text/markdown">
+                    ```html
+                      <div style="display: none">
+                          <div>
+                              <h1>Web Components</h1>
+                              <img src="http://webcomponents.org/img/logo.svg"/>
+                          </div>
+                      </div> 
+                    ```
+                    Недостига на този начин е, че браузъра ще извлече всички ресурси, като например картинката дори и ако шаблонът все още не е използван. Това е загуба на ресурси и производителност.
+
+                    Друг използван начин е шаблона да бъде в script елемент с невалиден тип.
+                    ```html
+                    <script type="text/template">
+                      <div>
+                        <h1>Web Components</h1>
+                        <img src="http://webcomponents.org/img/logo.svg"/>
+                      </div>
+                    </script1>
+                    ```
+                    Недостиг на този начин е, че понеже този шаблон ще бъде превърнат в DOM елемент чрез javascript InnerHtml api-то, може да доведе до cross site script уязвимост ако не е извършена подходяща проверка на съдържанието.                    
+                    
+                    
+                    <strong>Template</strong> елементът ще реши този проблем
+                    ```html
+                    <template>
+                      <div>
+                        <h1>Web Components<h1>
+                        <img src="http://webcomponents.org/img/logo.svg">
+                      </div>
+                    </template>
+                    ```
+                  </script>
+                </marked-element>
+                <p>
+                  Той позволява да се декларират фрагменти от html елементи, които са анализирани (parse) като HTML, но остават неизползвани по време на изпълнение и могат да бъдат истанцирани по-късно, когато има нужда от тях.
+                  <br>
+                  Темплейт елементът няма да изпълни съдържанието си, няма да направи заявка към други ресурси като картинки или скриптове и няма да изпълни <code>script</code> тагове декларирани в тях.
+                </p>
+              </paper-material>
+              <paper-material>
+                <h4>Поддръжка</h4>
+                <p>
+                  В момента template елементът се поддържа от Chrome, Firefox и Opera. Очаква се във версия 8 на Safari.
+                  <br/>
+                  Повече за поддръжката може да намерите на този адрес: <a href="https://www.chromestatus.com/features/5207287069147136" target="_blank">https://www.chromestatus.com/features/5207287069147136</a>
+                </p>
+                <paper-material elevation="2">
+                  <div class="primary">Primary text</div>
+                  <div class="secondary">Secondary</div>
+                </paper-material>
               </paper-material>
             </section>
             
             <section data-route="custom-elements" tabindex="-1">
               <paper-material elavation="1">
-                <p>Custom Elements</p>
+                <h1 class="page-title" tabindex="-1">Custom Elements</h1>
               </paper-material>
             </section>
             
             <section data-route="shadow-dom" tabindex="-1">
               <paper-material elavation="1">
-                <p>Shadow DOM</p>
+                <h1  class="page-title" tabindex="-1">Shadow DOM</h1>
               </paper-material>
             </section>
             
             <section data-route="html-imports" tabindex="-1">
               <paper-material elavation="1">
-                <p>HTML Imports</p>
+                <h1 class="page-title" tabindex="-1">HTML Imports</h1>
               </paper-material>
             </section>
             
             <section data-route="browser-support" tabindex="-1">
               <paper-material elavation="1">
-                <p>Browser support and Polyfills</p>
+                <h1 class="page-title" tabindex="-1">Browser support and Polyfills</h1>
               </paper-material>
             </section>
             
             <section data-route="resources" tabindex="-1">
               <paper-material elavation="1">
-                <p>Resources</p>
+                <h1 class="page-title" tabindex="-1">Resources</h1>
               </paper-material>
             </section>
             
             <section data-route="about-me" tabindex="-1">
               <paper-material elavation="1">
-                <p>About me</p>
+                <h1 class="page-title" tabindex="-1">About me</h1>
               </paper-material>
             </section>
             

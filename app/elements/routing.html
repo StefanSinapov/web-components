@@ -44,11 +44,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/', function() {
       app.route = 'introduction';
       setFocus(app.route);
+      app.title = 'Web Components';
+      app.subTitle = 'The future of the web today';
     });
 
     page(app.baseUrl, function() {
       app.route = 'introduction';
       setFocus(app.route);
+      app.title = 'Web Components';
+      app.subTitle = 'The future of the web today';
     });
 
     page('/users', function() {
@@ -69,34 +73,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     page('/introduction', function() {
       app.route = 'introduction';
+      setFocus(app.route);
+      app.title = 'Web Components';
+      app.subTitle = 'The future of the web today';
     });
     
     page('/templates', function() {
       app.route = 'templates';
+      setFocus(app.route);
+      app.title = 'Templates';
+      app.subTitle = '';
     });
     
     page('/custom-elements', function() {
       app.route = 'custom-elements';
+      setFocus(app.route);
+      app.title = 'Custom Elements';
+      app.subTitle = '';
     });
     
     page('/shadow-dom', function() {
       app.route = 'shadow-dom';
+      setFocus(app.route);
+      app.title = 'Shadow DOM';
+      app.subTitle = '';
     });
     
     page('/html-imports', function() {
       app.route = 'html-imports';
+      setFocus(app.route);
+      app.title = 'HTML Imports';
+      app.subTitle = '';
     });
     
     page('/browser-support', function() {
       app.route = 'browser-support';
+      setFocus(app.route);
+      app.title = 'Browser Support';
+      app.subTitle = '';
     });
     
     page('/resources', function() {
       app.route = 'resources';
+      setFocus(app.route);
+      app.title = 'Resources';
+      app.subTitle = '';
     });
     
     page('/about-me', function() {
       app.route = 'about-me';
+      setFocus(app.route);
+      app.title = 'About author';
+      app.subTitle = '';
     });
 
     // 404
@@ -112,4 +140,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
   });
+
 </script>
