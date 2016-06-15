@@ -1,0 +1,452 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<html lang="bg">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Реферат на тема Уеб компоненти. web components, shadow dom, custom elements, templates, template element, html import">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Web Components">
+  <title>Web Components</title>
+
+  <!-- Place favicon.ico in the `app/` directory -->
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#2E3AA1">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="PSK">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Web Components">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild-->
+
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+
+  <!-- Because this project uses vulcanize this should be your only html import
+       in this file. All other imports should go in elements.html -->
+  <link rel="import" href="elements/elements.html">
+
+  <!-- For shared styles, shared-styles.html import in elements.html -->
+  <style is="custom-style" include="shared-styles"></style>
+</head>
+
+<body unresolved>
+  <!-- build:remove -->
+  <span id="browser-sync-binding"></span>
+  <!-- endbuild -->
+
+  <template is="dom-bind" id="app">
+
+    <paper-drawer-panel id="paperDrawerPanel">
+      <!-- Drawer Scroll Header Panel -->
+      <paper-scroll-header-panel drawer fixed>
+
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <span class="menu-name">Web Components</span>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+        <paper-menu class="app-menu" attr-for-selected="data-route" selected="[[route]]">
+          <!--<a data-route="home" href="{{baseUrl}}">
+            <iron-icon icon="home"></iron-icon>
+            <span>Home</span>
+          </a>
+
+          <a data-route="users" href="{{baseUrl}}users">
+            <iron-icon icon="info"></iron-icon>
+            <span>Users</span>
+          </a>
+
+          <a data-route="contact" href="{{baseUrl}}contact">
+            <iron-icon icon="mail"></iron-icon>
+            <span>Contact</span>
+          </a>
+          -->
+          <a data-route="introduction" href="{{baseUrl}}introduction">
+            <iron-icon src="images/icons/web-components_48x48.png"></iron-icon>
+            <span>Въведение</span>
+          </a>
+          
+          <a data-route="templates" href="{{baseUrl}}templates">
+            <iron-icon src="images/icons/templates_48x48.png"></iron-icon>
+            <span>Templates</span>
+          </a>
+          
+          <a data-route="custom-elements" href="{{baseUrl}}custom-elements">
+            <iron-icon src="images/icons/custom-elements_48x48.png"></iron-icon>
+            <span>Custom Elements</span>
+          </a>
+          
+          <a data-route="shadow-dom" href="{{baseUrl}}shadow-dom">
+            <iron-icon src="images/icons/shadow-dom_48x48.png"></iron-icon>
+            <span>Shadow Dom</span>
+          </a>
+          
+          <a data-route="html-imports" href="{{baseUrl}}html-imports">
+            <iron-icon src="images/icons/html-imports_48x48.png"></iron-icon>
+            <span>HTML Imports</span>
+          </a>
+          
+          <a data-route="browser-support" href="{{baseUrl}}browser-support">
+            <iron-icon icon="build"></iron-icon>
+            <span>Browser Support</span>
+          </a>
+          
+          <a data-route="resources" href="{{baseUrl}}resources">
+            <iron-icon icon="language"></iron-icon>
+            <span>Resources</span>
+          </a>
+          
+          <a data-route="about-me" href="{{baseUrl}}about-me">
+            <iron-icon icon="account-circle"></iron-icon>
+            <span>About me</span>
+          </a>
+        </paper-menu>
+      </paper-scroll-header-panel>
+
+      <!-- Main Area -->
+      <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar" class="tall">
+          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+
+          <span class="space"></span>
+
+          <!-- Toolbar icons -->
+          <!--<paper-icon-button icon="search"></paper-icon-button>-->
+
+          <!-- Application name -->
+          <div class="middle middle-container">
+            <div class="app-name">{{title}}</div>
+          </div>
+
+          <!-- Application sub title -->
+          <div class="bottom bottom-container">
+            <div class="bottom-title">{{subTitle}}</div>
+          </div>
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+            <section data-route="home" tabindex="-1">
+              <paper-material elevation="1">
+                <my-greeting></my-greeting>
+
+                <p class="subhead">You now have:</p>
+                <my-list></my-list>
+
+                <p>Looking for more Web App layouts? Check out our <a href="https://github.com/PolymerElements/app-layout-templates">layouts</a> collection. You can also <a href="http://polymerelements.github.io/app-layout-templates/">preview</a> them live.</p>
+              </paper-material>
+
+              <paper-material elevation="1">
+                <p>This is another card.</p>
+              </paper-material>
+
+              <paper-material elevation="1">
+                <h2 id="license">License</h2>
+                <p>Everything in this repo is BSD style license unless otherwise specified.</p>
+                <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
+                <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+                <ul>
+                <li>Redistributions of source code must retain the above copyright
+                notice, this list of conditions and the following disclaimer.</li>
+                <li>Redistributions in binary form must reproduce the above
+                copyright notice, this list of conditions and the following disclaimer
+                in the documentation and/or other materials provided with the
+                distribution.</li>
+                <li>Neither the name of Google Inc. nor the names of its
+                contributors may be used to endorse or promote products derived from
+                this software without specific prior written permission.</li>
+                </ul>
+                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+              </paper-material>
+            </section>
+
+            <section data-route="contact" tabindex="-1">
+              <paper-material elevation="1">
+                <h1 class="page-title" tabindex="-1">Contact</h1>
+                <p>This is the contact section</p>
+              </paper-material>
+            </section>
+            
+            <section data-route="introduction" tabindex="-1">
+              <paper-material elavation="1">
+                <h1 class="page-title" tabindex="-1">Въведение</h1>
+                <p>
+                  Нови технологии излизат всеки ден, повечето от тях с обещание, 
+                  че чрез тях много по-лесно и по-бързо ще могат да се създадат комплексни уеб приложение, 
+                  какво тогава прави уеб компонентите толкова специални?
+                  Ако погледнем към инвестициите които правят големи компании, 
+                  като Google например с Polymer, или Mozilla с техният X-Tag, 
+                  ще можем да видим, че уеб компонентите неотменно ще бъдат част от бъдещето на уеб технологиите. 
+                 </p>
+                 
+                 <h2 class="subhead">Какво са уеб компонентите?</h2>
+                 <p>
+                   "Уеб компоненти" е термин който обобщава набор от технологии с помощта на които програмистите могат да създават 
+                   компоненти които лесно и бързо да бъдат преизползвани.
+                 </p>
+                 <p>Технологиите които седят зад уеб компонентите са: html templates, custom elements, shadow DOM и HTML imports.</p>
+                 <p>Съществуващите уеб компоненти са част от браузъра и могат да се използват без писане на код, а само чрез добавяне на import в HTML страницата.</p>
+                 <p>
+                   В момента уеб компонентите са в ранна фаза на документиране от W3C стандартът, но се поддържа в браузъри като Google Chrome, Opera и Mozilla Firefox.
+                    А чрез polyfills дори и в по-стари браузъри.
+                  </p>
+                <p>Всичко звучи много добре, но с какво на практика се различава от досегашният начин за преизползване на библиотеки.</p>
+                <p>Добър пример за това е jQuery UI. Ето например как можем да добавим модален прозорец в приложението си използвайки jQuery UI:</p>
+                <prism-highlighter></prism-highlighter>
+                <marked-element>
+                  <div class="markdown-html"></div>
+                  <script type="text/markdown">
+                    ```html
+                    <!-- based on http://jqueryui.com/dialog/ -->
+                    <head>
+                      <link	rel='stylesheet' href='//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css' />
+                    </head>
+                      <script src="//code.jquery.com/jquery-1.10.2.js"></script1>
+                      <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script2>
+                      <script>
+                        $(function () {
+                          $( "#dialog" ).dialog();
+                        }); 
+                      </script3>
+                    <body>
+                        <div id="dialog" title="After Ford">
+                          Ending is better than mending. <br />
+                          The more stitches, the less riches.
+                        </div>
+                    </body>
+                    ```
+                    </script>
+                  </marked-element>
+                
+                  <p>Изглежда просто нали, 3 script тага с импорти и още един за инициализирането на самият елемент като модален прозорец.</p>
+                  <p>Нека видим сега как би изглеждало това чрез уеб компоненти:</p>
+                  <marked-element>
+                    <div class="markdown-html"></div>
+                    <script type="text/markdown">
+                      ```html
+                      <head>
+                        <link rel="import" href="/imports/dialog/index.html">
+                      </head>
+                      <body>
+                        <dialog-component title="After Ford">
+                          Ending is better than mending. <br />
+                          The more stitches, the less riches.
+                        </dialog-component>
+                      </body>
+                      ```
+                    </script>
+                  </marked-element>
+                  <p>	Това значително подобри четливостта на кода нали?
+                    Но не това е най-важното в случая, а в знанията които са необходими за да се използват двата компонента. 
+                    В първия случай трябва да знаем API-то на jQueryUI, а при втория уеб компонентите 
+                    използват подход подобен на този на DOM API-то с който повечето програмисти са запознати. 
+                  </p>
+                  <p>
+                  Разликите не изглеждат толкова големи, но когато започнем да работим с повече UI библиотеки, 
+                  като например jQuery UI, Bootstrap, Closure Libraries и т.н., всички използват различни 
+                  терминологии и подходи и ще трябва да научите първо тях преди реално да започнете да ги използвате.
+                  </p>
+              </paper-material>
+              <paper-material>
+                 <h3>Има и други преимущества от използването на уеб компоненти: </h3>
+                 <ol>
+                   <li>
+                     <p>
+                       Kато например <strong>изолираният обхват (scope) на css стиловете</strong>. При обикновените UI библиотеки е възможно самата библиотека вътрешно да добавя css class или Id което и ние да използваме в проекта си, при което може да се получи изтичане (leak) на стилове. 
+              При уеб компонентите няма такава опасност, защото CSS стиловете имат обхват елементът. Това означава, че стиловете които идват с компонента няма как да имат някакъв страничен ефект върху бащините елементи. Същото е и в обратна посока, предотвратява parent документа случайно да стилизира уеб компонента.
+                    </p>
+                  </li>
+                   <li>
+                     <p>
+                       <strong>Преизползваемост</strong>. Поради това, че уеб компонентите са с изолиран обхват и отделени от останалата част на уеб страницата, те могат да бъдат преизползвани на други места в приложението. Или дори да бъдат споделени като open source елементи, където всеки би могъл да ги използва. 
+                    </p>
+                   </li>
+                   <li>
+                     <p>
+                       <strong>Изолираност</strong>. Тъй като уеб компонентите са с изолиран обхват (scope), разработването на UI компонентите може да бъде отделно от основната функционалност на приложението. Програмистите може самостоятелно да работят върху UI компонента, без да се налага да са наясно с логиката в останалата част на приложението. Поддръжката на тези компонента също е по-лесна поради изолираността им. 
+                   </p>
+                   </li>
+                  </ol>
+              </paper-material>
+              
+            </section>
+            
+            <section data-route="templates" tabindex="-1">
+              <paper-material elavation="1">
+                <h1 class="page-title" tabindex="-1">Templates</h1>
+                <p>
+                  Идеята за темплейти(шаблони) не е нещо ново.
+                  <br/>
+                  Използва се от много време както на сървъра (server side) така и при клиента (client side).
+                </p>
+               <p>
+                  Започвайки от сървъра темплейтите са широко разпространени за присвояване на променливи, условни операции и повтаряне на съдържание в HTML.
+               </p>
+               <p>
+                  Клиентски същото е постигнато от множество библиотеки чрез JavaScript: Handlebars.js, Underscore.js, AngularJS, Mustache и т.н. 
+                  <br> Всички те работят добре, но техниките които използват си имат своите недостатъци.
+                </p>
+                <p>
+                  В този пример шаблонът е div елемент скрит с помощта на стилове.
+                </p>
+                 <prism-highlighter></prism-highlighter>
+                <marked-element>
+                  <div class="markdown-html"></div>
+                  <script type="text/markdown">
+                    ```html
+                      <div style="display: none">
+                          <div>
+                              <h1>Web Components</h1>
+                              <img src="http://webcomponents.org/img/logo.svg"/>
+                          </div>
+                      </div> 
+                    ```
+                    Недостига на този начин е, че браузъра ще извлече всички ресурси, като например картинката дори и ако шаблонът все още не е използван. Това е загуба на ресурси и производителност.
+
+                    Друг използван начин е шаблона да бъде в script елемент с невалиден тип.
+                    ```html
+                    <script type="text/template">
+                      <div>
+                        <h1>Web Components</h1>
+                        <img src="http://webcomponents.org/img/logo.svg"/>
+                      </div>
+                    </script1>
+                    ```
+                    Недостиг на този начин е, че понеже този шаблон ще бъде превърнат в DOM елемент чрез javascript InnerHtml api-то, може да доведе до cross site script уязвимост ако не е извършена подходяща проверка на съдържанието.                    
+                    
+                    
+                    <strong>Template</strong> елементът ще реши този проблем
+                    ```html
+                    <template>
+                      <div>
+                        <h1>Web Components<h1>
+                        <img src="http://webcomponents.org/img/logo.svg">
+                      </div>
+                    </template>
+                    ```
+                  </script>
+                </marked-element>
+                <p>
+                  Той позволява да се декларират фрагменти от html елементи, които са анализирани (parse) като HTML, но остават неизползвани по време на изпълнение и могат да бъдат истанцирани по-късно, когато има нужда от тях.
+                  <br>
+                  Темплейт елементът няма да изпълни съдържанието си, няма да направи заявка към други ресурси като картинки или скриптове и няма да изпълни <code>script</code> тагове декларирани в тях.
+                </p>
+              </paper-material>
+              <paper-material>
+                <h4>Поддръжка</h4>
+                <p>
+                  В момента template елементът се поддържа от Chrome, Firefox и Opera. Очаква се във версия 8 на Safari.
+                  <br/>
+                  Повече за поддръжката може да намерите на този адрес: <a href="https://www.chromestatus.com/features/5207287069147136" target="_blank">https://www.chromestatus.com/features/5207287069147136</a>
+                </p>
+                <paper-material elevation="2">
+                  <div class="primary">Primary text</div>
+                  <div class="secondary">Secondary</div>
+                </paper-material>
+              </paper-material>
+            </section>
+            
+            <section data-route="custom-elements" tabindex="-1">
+              <paper-material elavation="1">
+                <h1 class="page-title" tabindex="-1">Custom Elements</h1>
+              </paper-material>
+            </section>
+            
+            <section data-route="shadow-dom" tabindex="-1">
+              <paper-material elavation="1">
+                <h1  class="page-title" tabindex="-1">Shadow DOM</h1>
+              </paper-material>
+            </section>
+            
+            <section data-route="html-imports" tabindex="-1">
+              <paper-material elavation="1">
+                <h1 class="page-title" tabindex="-1">HTML Imports</h1>
+              </paper-material>
+            </section>
+            
+            <section data-route="browser-support" tabindex="-1">
+              <paper-material elavation="1">
+                <h1 class="page-title" tabindex="-1">Browser support and Polyfills</h1>
+              </paper-material>
+            </section>
+            
+            <section data-route="resources" tabindex="-1">
+              <paper-material elavation="1">
+                <h1 class="page-title" tabindex="-1">Resources</h1>
+              </paper-material>
+            </section>
+            
+            <section data-route="about-me" tabindex="-1">
+              <paper-material elavation="1">
+                <h1 class="page-title" tabindex="-1">About me</h1>
+              </paper-material>
+            </section>
+            
+          </iron-pages>
+        </div>
+      </paper-scroll-header-panel>
+    </paper-drawer-panel>
+
+    <paper-toast id="toast">
+      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+    </paper-toast>
+
+    <!-- Uncomment next block to enable Service Worker support (1/2) -->
+    <!--
+    <paper-toast id="caching-complete"
+                 duration="6000"
+                 text="Caching complete! This app will work offline.">
+    </paper-toast>
+
+    <platinum-sw-register auto-register
+                          clients-claim
+                          skip-waiting
+                          base-uri="bower_components/platinum-sw/bootstrap"
+                          on-service-worker-installed="displayInstalledToast">
+      <platinum-sw-cache default-cache-strategy="fastest"
+                         cache-config-file="cache-config.json">
+      </platinum-sw-cache>
+    </platinum-sw-register>
+    -->
+
+  </template>
+
+  <!-- build:js scripts/app.js -->
+  <script src="scripts/app.js"></script>
+  <!-- endbuild-->
+</body>
+
+</html>

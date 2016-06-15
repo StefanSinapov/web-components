@@ -1,0 +1,144 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<script src="../bower_components/page/page.js"></script>
+<script>
+  window.addEventListener('WebComponentsReady', function() {
+
+    // We use Page.js for routing. This is a Micro
+    // client-side router inspired by the Express router
+    // More info: https://visionmedia.github.io/page.js/
+
+    // Removes end / from app.baseUrl which page.base requires for production
+    if (window.location.port === '') {  // if production
+      page.base(app.baseUrl.replace(/\/$/, ''));
+    }
+
+    // Middleware
+    function scrollToTop(ctx, next) {
+      app.scrollPageToTop();
+      next();
+    }
+
+    function closeDrawer(ctx, next) {
+      app.closeDrawer();
+      next();
+    }
+
+    function setFocus(selected){
+      document.querySelector('section[data-route="' + selected + '"] .page-title').focus();
+    }
+
+    // Routes
+    page('*', scrollToTop, closeDrawer, function(ctx, next) {
+      next();
+    });
+
+    page('/', function() {
+      app.route = 'introduction';
+      setFocus(app.route);
+      app.title = 'Web Components';
+      app.subTitle = 'The future of the web today';
+    });
+
+    page(app.baseUrl, function() {
+      app.route = 'introduction';
+      setFocus(app.route);
+      app.title = 'Web Components';
+      app.subTitle = 'The future of the web today';
+    });
+
+    page('/users', function() {
+      app.route = 'users';
+      setFocus(app.route);
+    });
+
+    page('/users/:name', function(data) {
+      app.route = 'user-info';
+      app.params = data.params;
+      setFocus(app.route);
+    });
+
+    page('/contact', function() {
+      app.route = 'contact';
+      setFocus(app.route);
+    });
+    
+    page('/introduction', function() {
+      app.route = 'introduction';
+      setFocus(app.route);
+      app.title = 'Web Components';
+      app.subTitle = 'The future of the web today';
+    });
+    
+    page('/templates', function() {
+      app.route = 'templates';
+      setFocus(app.route);
+      app.title = 'Templates';
+      app.subTitle = '';
+    });
+    
+    page('/custom-elements', function() {
+      app.route = 'custom-elements';
+      setFocus(app.route);
+      app.title = 'Custom Elements';
+      app.subTitle = '';
+    });
+    
+    page('/shadow-dom', function() {
+      app.route = 'shadow-dom';
+      setFocus(app.route);
+      app.title = 'Shadow DOM';
+      app.subTitle = '';
+    });
+    
+    page('/html-imports', function() {
+      app.route = 'html-imports';
+      setFocus(app.route);
+      app.title = 'HTML Imports';
+      app.subTitle = '';
+    });
+    
+    page('/browser-support', function() {
+      app.route = 'browser-support';
+      setFocus(app.route);
+      app.title = 'Browser Support';
+      app.subTitle = '';
+    });
+    
+    page('/resources', function() {
+      app.route = 'resources';
+      setFocus(app.route);
+      app.title = 'Resources';
+      app.subTitle = '';
+    });
+    
+    page('/about-me', function() {
+      app.route = 'about-me';
+      setFocus(app.route);
+      app.title = 'About author';
+      app.subTitle = '';
+    });
+
+    // 404
+    page('*', function() {
+      app.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+      app.$.toast.show();
+      page.redirect(app.baseUrl);
+    });
+
+    // add #! before urls
+    page({
+      hashbang: true
+    });
+
+  });
+
+</script>
