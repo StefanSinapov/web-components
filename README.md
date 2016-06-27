@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/StefanSinapov/web-components.png?label=ready&title=Ready)](https://waffle.io/StefanSinapov/web-components)
 ## web-components
 Web Components project for FMI WWW Course
 
